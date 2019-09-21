@@ -29,22 +29,30 @@ public class Home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Book = new javax.swing.JButton();
+        Cancel = new javax.swing.JButton();
+        Exit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Book.setText("Book");
+        Book.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BookActionPerformed(evt);
             }
         });
 
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Cancel.setText("Cancel");
+        Cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                CancelActionPerformed(evt);
+            }
+        });
+
+        Exit.setText("Exit");
+        Exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitActionPerformed(evt);
             }
         });
 
@@ -53,35 +61,48 @@ public class Home extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addComponent(jButton1)
-                .addGap(65, 65, 65)
-                .addComponent(jButton2)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(Book)
+                        .addGap(65, 65, 65)
+                        .addComponent(Cancel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(171, 171, 171)
+                        .addComponent(Exit)))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(143, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(134, 134, 134))
+                    .addComponent(Book)
+                    .addComponent(Cancel))
+                .addGap(57, 57, 57)
+                .addComponent(Exit)
+                .addGap(54, 54, 54))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookActionPerformed
         // TODO add your handling code here:
         new Book().setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BookActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
+        // TODO add your handling code here:
+        new Cancel().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_CancelActionPerformed
+
+    private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
         // TODO add your handling code here:
         exit(1);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_ExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,7 +141,8 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton Book;
+    private javax.swing.JButton Cancel;
+    private javax.swing.JButton Exit;
     // End of variables declaration//GEN-END:variables
 }

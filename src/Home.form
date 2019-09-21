@@ -23,12 +23,20 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="80" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
+                      <Component id="Book" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                      <Component id="Cancel" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
+                      <Component id="Exit" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="106" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -37,29 +45,39 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="143" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Book" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Cancel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+              <Component id="Exit" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="Book">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jButton1"/>
+        <Property name="text" type="java.lang.String" value="Book"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BookActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="Cancel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jButton2"/>
+        <Property name="text" type="java.lang.String" value="Cancel"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CancelActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="Exit">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Exit"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ExitActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
