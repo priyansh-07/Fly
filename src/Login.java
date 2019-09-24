@@ -1,8 +1,5 @@
 
-import java.util.Arrays;
-import javax.swing.JOptionPane;
-import java.awt.Toolkit;
-import java.awt.event.WindowEvent;
+import java.sql.*;  
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,7 +12,9 @@ import java.awt.event.WindowEvent;
  * @author VINAY
  */
 public class Login extends javax.swing.JFrame {
-
+    Connection con=null;
+    ResultSet rs=null;
+    Statement stmt=null;
     /**
      * Creates new form Login
      */
@@ -114,11 +113,22 @@ public class Login extends javax.swing.JFrame {
     private void LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginActionPerformed
         // TODO add your handling code here:
         String user = User.getText();
-        String pass = Pass.getText();
-        if(user.contains("abc") && pass.contains("123"))
-        {
-            new Home().setVisible(true);
-            this.setVisible(false);
+        String pass = new String(Pass.getPassword());
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/FLIGHT_BOOKING", "root", "1234");
+            String query = "SELECT PASSWORD FROM USER WHERE U_ID = \'"+user+"\';";
+            stmt = (Statement) con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            rs.next();
+            String actual_pass = rs.getString(1);
+            if(pass.equals(actual_pass)) {
+                this.setVisible(false);
+                new Home().setVisible(true);
+            }
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }//GEN-LAST:event_LoginActionPerformed
 
