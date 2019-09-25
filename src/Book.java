@@ -105,7 +105,7 @@ public class Book extends javax.swing.JFrame {
             }
         });
         bookingTable.setColumnSelectionAllowed(true);
-        bookingTable.setShowGrid(true);
+        bookingTable.setShowGrid(false);
         bookingTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bookingTableMouseClicked(evt);
