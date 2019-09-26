@@ -46,6 +46,8 @@ public class Book extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         bookingTable = new javax.swing.JTable();
         proceedBtn = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        uid_tf = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,7 +106,6 @@ public class Book extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        bookingTable.setColumnSelectionAllowed(true);
         bookingTable.setShowGrid(false);
         bookingTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -128,6 +129,19 @@ public class Book extends javax.swing.JFrame {
         proceedBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 proceedBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Enter usename : ");
+
+        uid_tf.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                uid_tfCaretUpdate(evt);
+            }
+        });
+        uid_tf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uid_tfActionPerformed(evt);
             }
         });
 
@@ -163,9 +177,15 @@ public class Book extends javax.swing.JFrame {
                         .addGap(367, 367, 367))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(proceedBtn)
-                        .addGap(252, 252, 252)
+                        .addGap(253, 253, 253)
                         .addComponent(jButton1)
                         .addGap(55, 55, 55))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(288, 288, 288)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(uid_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,11 +206,17 @@ public class Book extends javax.swing.JFrame {
                 .addComponent(searchFlightsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(proceedBtn))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(jLabel4)
+                    .addComponent(uid_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(74, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(proceedBtn)
+                    .addComponent(jButton1))
+                .addContainerGap())
         );
 
         pack();
@@ -231,7 +257,7 @@ public class Book extends javax.swing.JFrame {
                 bookingTable.setValueAt(rs.getTime(8), i, 7);
                 i++;
             }
-            con.close();
+            
         } catch(Exception e) {
             System.out.print(e);
         }
@@ -241,17 +267,50 @@ int selectedRow = -1;
     private void bookingTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookingTableMouseClicked
         // TODO add your handling code here:
         selectedRow = bookingTable.getSelectedRow();
-        if (selectedRow!=1)
-                proceedBtn.setEnabled(true);
+        //if (selectedRow!=-1)
+        //        proceedBtn.setEnabled(true);
         
     }//GEN-LAST:event_bookingTableMouseClicked
 public String bookedFid=null;
     private void proceedBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proceedBtnActionPerformed
         // TODO add your handling code here:
+        
         bookedFid = (String) bookingTable.getValueAt(selectedRow, 0);
-        System.out.print(bookedFid);
+        int last_BID = 0;
+        try {
+            String query = "SELECT B_ID FROM BOOKINGS;";
+            stmt = (Statement) con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            int i=0;
+            rs.last();
+            last_BID =  rs.getInt(1);
+        } catch(Exception e) {
+            System.out.print(e);
+        }
+        int curr_BID = ++last_BID;
+        String u_id = uid_tf.getText();
+        int len_padding_zeros = 6 - (Integer.toString(curr_BID)).length();
+        String str_curr_BID="";
+        for (int i=0; i < len_padding_zeros; i++)
+            str_curr_BID+='0';
+        str_curr_BID += Integer.toString(curr_BID);
+        try {
+            String query = "INSERT INTO BOOKINGS VALUES ('"+str_curr_BID+"', '"+u_id+"', '"+bookedFid+"', NULL, NULL, NULL);";
+            stmt = (Statement) con.createStatement();
+            stmt.execute(query);
+        } catch(Exception e) {
+            System.out.print(e);
+        }       
         //code to switch to new frame here...
     }//GEN-LAST:event_proceedBtnActionPerformed
+
+    private void uid_tfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uid_tfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_uid_tfActionPerformed
+
+    private void uid_tfCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_uid_tfCaretUpdate
+        proceedBtn.setEnabled(true);
+    }//GEN-LAST:event_uid_tfCaretUpdate
 
     /**
      * @param args the command line arguments
@@ -297,9 +356,11 @@ public String bookedFid=null;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton proceedBtn;
     private javax.swing.JButton searchFlightsBtn;
     private javax.swing.JComboBox<String> srcComboBox;
+    private javax.swing.JTextField uid_tf;
     // End of variables declaration//GEN-END:variables
 }
