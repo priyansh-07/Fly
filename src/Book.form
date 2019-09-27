@@ -193,17 +193,94 @@
         <Component class="javax.swing.JTable" name="bookingTable">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="8" rowCount="4">
-                <Column editable="false" title="F_ID" type="java.lang.String"/>
-                <Column editable="false" title="DATE" type="java.lang.Object"/>
-                <Column editable="false" title="DEP" type="java.lang.Object"/>
-                <Column editable="false" title="ARR" type="java.lang.Object"/>
-                <Column editable="false" title="SOURCE" type="java.lang.String"/>
-                <Column editable="false" title="DESTINATION" type="java.lang.String"/>
-                <Column editable="false" title="AVL_SEATS" type="java.lang.Integer"/>
-                <Column editable="false" title="DURATION" type="java.lang.Object"/>
+              <Table columnCount="7" rowCount="10">
+                <Column editable="true" title="DEPARTURE" type="java.lang.Object">
+                  <Data value="08:00:00"/>
+                  <Data value="18:00:00"/>
+                  <Data value="04:00:00"/>
+                  <Data value="11:00:00"/>
+                  <Data value="13:00:00"/>
+                  <Data value="09:15:00"/>
+                  <Data value="20:45:00"/>
+                  <Data value="07:25:00"/>
+                  <Data value="11:30:00"/>
+                  <Data value="03:00:00"/>
+                </Column>
+                <Column editable="true" title="ARRIVAL" type="java.lang.Object">
+                  <Data value="10:00:00"/>
+                  <Data value="20:15:00"/>
+                  <Data value="05:30:00"/>
+                  <Data value="13:30:00"/>
+                  <Data value="15:10:00"/>
+                  <Data value="11:00:00"/>
+                  <Data value="23:30:00"/>
+                  <Data value="10:05:00"/>
+                  <Data value="13:45:00"/>
+                  <Data value="05:30:00"/>
+                </Column>
+                <Column editable="true" title="SOURCE" type="java.lang.String">
+                  <Data value="PUNE"/>
+                  <Data value="PUNE"/>
+                  <Data value="PUNE"/>
+                  <Data value="PUNE"/>
+                  <Data value="MUMBAI"/>
+                  <Data value="MUMBAI"/>
+                  <Data value="MUMBAI"/>
+                  <Data value="DELHI"/>
+                  <Data value="DELHI"/>
+                  <Data value="BANGALORE"/>
+                </Column>
+                <Column editable="true" title="DESTINATION" type="java.lang.String">
+                  <Data value="MUMBAI"/>
+                  <Data value="DELHI"/>
+                  <Data value="BANGALORE"/>
+                  <Data value="KOLKATA"/>
+                  <Data value="DELHI"/>
+                  <Data value="BANGALORE"/>
+                  <Data value="KOLKATA"/>
+                  <Data value="BANGALORE"/>
+                  <Data value="KOLKATA"/>
+                  <Data value="KOLKATA"/>
+                </Column>
+                <Column editable="true" title="AVL_SEATS" type="java.lang.Integer">
+                  <Data value="40"/>
+                  <Data value="40"/>
+                  <Data value="50"/>
+                  <Data value="65"/>
+                  <Data value="36"/>
+                  <Data value="52"/>
+                  <Data value="60"/>
+                  <Data value="45"/>
+                  <Data value="30"/>
+                  <Data value="58"/>
+                </Column>
+                <Column editable="true" title="DURATION" type="java.lang.Object">
+                  <Data value="02:00:00"/>
+                  <Data value="02:15:00"/>
+                  <Data value="01:30:00"/>
+                  <Data value="02:30:00"/>
+                  <Data value="02:10:00"/>
+                  <Data value="01:45:00"/>
+                  <Data value="02:45:00"/>
+                  <Data value="02:40:00"/>
+                  <Data value="02:15:00"/>
+                  <Data value="02:30:00"/>
+                </Column>
+                <Column editable="true" title="COST" type="java.lang.Object">
+                  <Data value="3000"/>
+                  <Data value="3500"/>
+                  <Data value="2750"/>
+                  <Data value="3500"/>
+                  <Data value="3200"/>
+                  <Data value="3000"/>
+                  <Data value="4000"/>
+                  <Data value="3500"/>
+                  <Data value="3300"/>
+                  <Data value="3000"/>
+                </Column>
               </Table>
             </Property>
+            <Property name="cellSelectionEnabled" type="boolean" value="false"/>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="1">
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
@@ -241,14 +318,9 @@
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
               </TableColumnModel>
             </Property>
-            <Property name="showGrid" type="boolean" value="false"/>
+            <Property name="rowSelectionAllowed" type="boolean" value="true"/>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>

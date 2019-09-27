@@ -82,31 +82,31 @@ public class Book extends javax.swing.JFrame {
 
         bookingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {"08:00:00", "10:00:00", "PUNE", "MUMBAI",  new Integer(40), "02:00:00", "3000"},
+                {"18:00:00", "20:15:00", "PUNE", "DELHI",  new Integer(40), "02:15:00", "3500"},
+                {"04:00:00", "05:30:00", "PUNE", "BANGALORE",  new Integer(50), "01:30:00", "2750"},
+                {"11:00:00", "13:30:00", "PUNE", "KOLKATA",  new Integer(65), "02:30:00", "3500"},
+                {"13:00:00", "15:10:00", "MUMBAI", "DELHI",  new Integer(36), "02:10:00", "3200"},
+                {"09:15:00", "11:00:00", "MUMBAI", "BANGALORE",  new Integer(52), "01:45:00", "3000"},
+                {"20:45:00", "23:30:00", "MUMBAI", "KOLKATA",  new Integer(60), "02:45:00", "4000"},
+                {"07:25:00", "10:05:00", "DELHI", "BANGALORE",  new Integer(45), "02:40:00", "3500"},
+                {"11:30:00", "13:45:00", "DELHI", "KOLKATA",  new Integer(30), "02:15:00", "3300"},
+                {"03:00:00", "05:30:00", "BANGALORE", "KOLKATA",  new Integer(58), "02:30:00", "3000"}
             },
             new String [] {
-                "F_ID", "DATE", "DEP", "ARR", "SOURCE", "DESTINATION", "AVL_SEATS", "DURATION"
+                "DEPARTURE", "ARRIVAL", "SOURCE", "DESTINATION", "AVL_SEATS", "DURATION", "COST"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
         });
-        bookingTable.setShowGrid(false);
+        bookingTable.setCellSelectionEnabled(false);
+        bookingTable.setRowSelectionAllowed(true);
         bookingTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bookingTableMouseClicked(evt);
@@ -122,7 +122,6 @@ public class Book extends javax.swing.JFrame {
             bookingTable.getColumnModel().getColumn(4).setResizable(false);
             bookingTable.getColumnModel().getColumn(5).setResizable(false);
             bookingTable.getColumnModel().getColumn(6).setResizable(false);
-            bookingTable.getColumnModel().getColumn(7).setResizable(false);
         }
 
         proceedBtn.setText("Proceed");
@@ -241,20 +240,31 @@ public class Book extends javax.swing.JFrame {
         
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/FLIGHT_BOOKING", "root", "root@123");
-            String query = "SELECT * FROM FLIGHTS WHERE SOURCE='"+src+"' AND DESTINATION='"+des+"' AND FLIGHT_DATE='"+date+"';";
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/FLIGHT_BOOKING", "root", "1234");
+            String query = "SELECT * FROM FLIGHTS WHERE SOURCE='"+src+"' AND DESTINATION='"+des+"';";
             stmt = (Statement) con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             int i=0;
             while (rs.next()) {
-                bookingTable.setValueAt(rs.getString(1), i, 0);
-                bookingTable.setValueAt(rs.getDate(2), i, 1);
-                bookingTable.setValueAt(rs.getTime(3), i, 2);
-                bookingTable.setValueAt(rs.getTime(4), i, 3);
-                bookingTable.setValueAt(rs.getString(5), i, 4);
-                bookingTable.setValueAt(rs.getString(6), i, 5);
+                //bookingTable.setValueAt(rs.getString(1), i, 0);
+                //bookingTable.setValueAt(rs.getDate(2), i, 1);
+                bookingTable.setValueAt(rs.getTime(1), i, 0);
+                bookingTable.setValueAt(rs.getTime(2), i, 1);
+                bookingTable.setValueAt(rs.getString(3), i, 2);
+                bookingTable.setValueAt(rs.getString(4), i, 3);
+                bookingTable.setValueAt(rs.getInt(5), i, 4);
+                bookingTable.setValueAt(rs.getTime(6), i, 5);
                 bookingTable.setValueAt(rs.getInt(7), i, 6);
-                bookingTable.setValueAt(rs.getTime(8), i, 7);
+                i++;
+            }
+            while(i<10) {
+                bookingTable.setValueAt("", i, 0);
+                bookingTable.setValueAt("", i, 1);
+                bookingTable.setValueAt("", i, 2);
+                bookingTable.setValueAt("", i, 3);
+                bookingTable.setValueAt("", i, 4);
+                bookingTable.setValueAt("", i, 5);
+                bookingTable.setValueAt("", i, 6);
                 i++;
             }
             
