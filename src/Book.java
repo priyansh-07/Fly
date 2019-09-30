@@ -82,31 +82,29 @@ public class Book extends javax.swing.JFrame {
 
         bookingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"08:00:00", "10:00:00", "PUNE", "MUMBAI",  new Integer(40), "02:00:00", "3000"},
-                {"18:00:00", "20:15:00", "PUNE", "DELHI",  new Integer(40), "02:15:00", "3500"},
-                {"04:00:00", "05:30:00", "PUNE", "BANGALORE",  new Integer(50), "01:30:00", "2750"},
-                {"11:00:00", "13:30:00", "PUNE", "KOLKATA",  new Integer(65), "02:30:00", "3500"},
-                {"13:00:00", "15:10:00", "MUMBAI", "DELHI",  new Integer(36), "02:10:00", "3200"},
-                {"09:15:00", "11:00:00", "MUMBAI", "BANGALORE",  new Integer(52), "01:45:00", "3000"},
-                {"20:45:00", "23:30:00", "MUMBAI", "KOLKATA",  new Integer(60), "02:45:00", "4000"},
-                {"07:25:00", "10:05:00", "DELHI", "BANGALORE",  new Integer(45), "02:40:00", "3500"},
-                {"11:30:00", "13:45:00", "DELHI", "KOLKATA",  new Integer(30), "02:15:00", "3300"},
-                {"03:00:00", "05:30:00", "BANGALORE", "KOLKATA",  new Integer(58), "02:30:00", "3000"}
+                {"08:00:00", "10:00:00", "PUNE", "MUMBAI",  new Integer(40), "02:00:00", "3000", "PUNMUM"},
+                {"18:00:00", "20:15:00", "PUNE", "DELHI",  new Integer(40), "02:15:00", "3500", "PUNDEL"},
+                {"04:00:00", "05:30:00", "PUNE", "BANGALORE",  new Integer(50), "01:30:00", "2750", "PUNBAN"},
+                {"11:00:00", "13:30:00", "PUNE", "KOLKATA",  new Integer(65), "02:30:00", "3500", "PUNKOL"},
+                {"13:00:00", "15:10:00", "MUMBAI", "DELHI",  new Integer(36), "02:10:00", "3200", "MUMDEL"},
+                {"09:15:00", "11:00:00", "MUMBAI", "BANGALORE",  new Integer(52), "01:45:00", "3000", "MUMBAN"},
+                {"20:45:00", "23:30:00", "MUMBAI", "KOLKATA",  new Integer(60), "02:45:00", "4000", "MUMKOL"},
+                {"07:25:00", "10:05:00", "DELHI", "BANGALORE",  new Integer(45), "02:40:00", "3500", "DELBAN"},
+                {"11:30:00", "13:45:00", "DELHI", "KOLKATA",  new Integer(30), "02:15:00", "3300", "DELKOL"},
+                {"03:00:00", "05:30:00", "BANGALORE", "KOLKATA",  new Integer(58), "02:30:00", "3000", "BANKOL"}
             },
             new String [] {
-                "DEPARTURE", "ARRIVAL", "SOURCE", "DESTINATION", "AVL_SEATS", "DURATION", "COST"
+                "DEPARTURE", "ARRIVAL", "SOURCE", "DESTINATION", "AVL_SEATS", "DURATION", "COST", "DEFAULT_F_ID"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        bookingTable.setCellSelectionEnabled(false);
-        bookingTable.setRowSelectionAllowed(true);
         bookingTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bookingTableMouseClicked(evt);
@@ -122,6 +120,7 @@ public class Book extends javax.swing.JFrame {
             bookingTable.getColumnModel().getColumn(4).setResizable(false);
             bookingTable.getColumnModel().getColumn(5).setResizable(false);
             bookingTable.getColumnModel().getColumn(6).setResizable(false);
+            bookingTable.getColumnModel().getColumn(7).setResizable(false);
         }
 
         proceedBtn.setText("Proceed");
@@ -236,7 +235,7 @@ public class Book extends javax.swing.JFrame {
         String src = (String) srcComboBox.getSelectedItem();
         String des = (String) desComboBox.getSelectedItem();
         Date d = DateChooser.getDate();
-        String date = Integer.toString(1900+d.getYear())+'-'+Integer.toString(d.getMonth()+1)+'-'+Integer.toString(d.getDate());
+        date = Integer.toString(1900+d.getYear())+'-'+Integer.toString(d.getMonth()+1)+'-'+Integer.toString(d.getDate());
         
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -255,6 +254,7 @@ public class Book extends javax.swing.JFrame {
                 bookingTable.setValueAt(rs.getInt(5), i, 4);
                 bookingTable.setValueAt(rs.getTime(6), i, 5);
                 bookingTable.setValueAt(rs.getInt(7), i, 6);
+                bookingTable.setValueAt(rs.getString(8), i, 7);
                 i++;
             }
             while(i<10) {
@@ -265,6 +265,7 @@ public class Book extends javax.swing.JFrame {
                 bookingTable.setValueAt("", i, 4);
                 bookingTable.setValueAt("", i, 5);
                 bookingTable.setValueAt("", i, 6);
+                bookingTable.setValueAt("", i, 7);
                 i++;
             }
             
@@ -281,11 +282,21 @@ int selectedRow = -1;
         //        proceedBtn.setEnabled(true);
         
     }//GEN-LAST:event_bookingTableMouseClicked
-public String bookedFid=null;
+//public String bookedFid=null;
+public String src=null;
+public String dest=null;
+public Integer avls=null;
+public String deff=null;
+public String date;
     private void proceedBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proceedBtnActionPerformed
         // TODO add your handling code here:
         
-        bookedFid = (String) bookingTable.getValueAt(selectedRow, 0);
+        //bookedFid = (String) bookingTable.getValueAt(selectedRow, 0);
+        src = (String) bookingTable.getValueAt(selectedRow, 2);
+        dest = (String) bookingTable.getValueAt(selectedRow, 3);
+        avls = (Integer) bookingTable.getValueAt(selectedRow, 4);
+        deff = (String) bookingTable.getValueAt(selectedRow, 7);
+        
         int last_BID = 0;
         try {
             String query = "SELECT B_ID FROM BOOKINGS;";
@@ -304,14 +315,56 @@ public String bookedFid=null;
         for (int i=0; i < len_padding_zeros; i++)
             str_curr_BID+='0';
         str_curr_BID += Integer.toString(curr_BID);
+        
+        int last_FID = 0;
         try {
-            String query = "INSERT INTO BOOKINGS VALUES ('"+str_curr_BID+"', '"+u_id+"', '"+bookedFid+"', NULL, NULL, NULL);";
+            String query = "SELECT F_ID FROM BOOKINGS;";
+            stmt = (Statement) con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            int i=0;
+            rs.last();
+            last_FID =  rs.getInt(1);
+        } catch(Exception e) {
+            System.out.print(e);
+        }
+        int curr_FID=0,c=0;
+        try {
+            String query = "SELECT F.DEFAULT_F_ID,B.F_ID FROM FLIGHTS F,BOOKINGS B, BOOKED_FLIGHTS BF WHERE F.DEFAULT_F_ID=BF.DEFAULT_F_ID AND B.B_ID NOT LIKE '%0';";
+            stmt = (Statement)con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next())
+            {
+                if(rs.getString(1).equals(deff))
+                {
+                    c++;
+                    last_FID=rs.getInt(2);
+                    break;
+                }
+            }
+        } catch(Exception e){
+            System.out.print(e);
+        }
+        if(c==0)
+            curr_FID = ++last_FID;
+        //String F_id = uid_tf.getText();
+        len_padding_zeros = 6 - (Integer.toString(curr_FID)).length();
+        String str_curr_FID="";
+        for (int i=0; i < len_padding_zeros; i++)
+            str_curr_FID+='0';
+        str_curr_FID += Integer.toString(curr_FID);
+        
+        try {
+            String query = "INSERT INTO BOOKINGS VALUES ('"+str_curr_BID+"', '"+u_id+"', '"+str_curr_FID+"', NULL, NULL, NULL);";
+            String query2 = "INSERT INTO BOOKED_FLIGHTS VALUES('"+str_curr_FID+"','"+avls+"','"+deff+"','"+date+"');";
             stmt = (Statement) con.createStatement();
             stmt.execute(query);
+            stmt.execute(query2);
         } catch(Exception e) {
             System.out.print(e);
         }       
         //code to switch to new frame here...
+        this.setVisible(false);
+        new Flist().setVisible(true);
     }//GEN-LAST:event_proceedBtnActionPerformed
 
     private void uid_tfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uid_tfActionPerformed
