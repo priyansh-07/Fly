@@ -242,7 +242,7 @@ public class Book extends javax.swing.JFrame {
         
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/FLY", "root", "root123");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/FLIGHT_BOOKING", "root", "1234");
             String query = "SELECT * FROM FLIGHTS WHERE SOURCE='"+src+"' AND DESTINATION='"+des+"';";
             stmt = (Statement) con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -362,7 +362,7 @@ public String date;
         try {
             String query2;
             String query = "INSERT INTO BOOKINGS VALUES ('"+str_curr_BID+"', '"+u_id+"', '"+str_curr_FID+"', NULL, NULL, NULL);";
-            String query3 = "INSERT INTO CANCELLATION VALUES ('"+str_curr_BID+"', '"+str_curr_FID+"', '"+src+"', '"+dest+"', '"+date+"');";
+            String query3 = "INSERT INTO CANCEL VALUES ('"+str_curr_BID+"', '"+str_curr_FID+"', '"+src+"', '"+dest+"', '"+date+"');";
             stmt = (Statement) con.createStatement();
             if(c==0)
             {   query2 = "INSERT INTO BOOKED_FLIGHTS VALUES('"+str_curr_FID+"','"+avls+"','"+deff+"','"+date+"');";

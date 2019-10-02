@@ -3,12 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import java.sql.*;
 /**
  *
  * @author VINAY
  */
 public class Flist extends javax.swing.JFrame {
+    Connection con=null;
+    ResultSet rs=null;
+    Statement stmt=null;
+
 
     /**
      * Creates new form Flist
@@ -26,9 +30,21 @@ public class Flist extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        PTF = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        ConfirmBtn = new javax.swing.JButton();
+        NTF = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        ATF = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        MRB = new javax.swing.JRadioButton();
+        FRB = new javax.swing.JRadioButton();
+        EnterBtn = new javax.swing.JButton();
+        UTF = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,9 +57,42 @@ public class Flist extends javax.swing.JFrame {
 
         jLabel1.setText("Enter Username:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setText("Number of Passengers: ");
+
+        jLabel3.setText("Passenger Name: ");
+
+        ConfirmBtn.setText("Confirm");
+        ConfirmBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                ConfirmBtnActionPerformed(evt);
+            }
+        });
+
+        NTF.setEnabled(false);
+        NTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NTFActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Age:");
+
+        ATF.setEnabled(false);
+
+        jLabel5.setText("Gender: ");
+
+        buttonGroup1.add(MRB);
+        MRB.setText("Male");
+        MRB.setEnabled(false);
+
+        buttonGroup1.add(FRB);
+        FRB.setText("Female");
+        FRB.setEnabled(false);
+
+        EnterBtn.setText("Enter");
+        EnterBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EnterBtnActionPerformed(evt);
             }
         });
 
@@ -51,26 +100,69 @@ public class Flist extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(455, 455, 455))
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(EnterBtn)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(PTF, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(UTF, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(ConfirmBtn))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(NTF, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(ATF, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(FRB)
+                            .addComponent(MRB))
+                        .addGap(52, 52, 52))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 282, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                    .addComponent(ConfirmBtn)
+                    .addComponent(UTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(PTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(NTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(ATF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(MRB))
+                .addGap(18, 18, 18)
+                .addComponent(FRB)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(EnterBtn))
                 .addContainerGap())
         );
 
@@ -82,10 +174,77 @@ public class Flist extends javax.swing.JFrame {
         new Book().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    public String user;
+    public int seats;
+    public int i=0;
+    public String pname;
+    public int age=0;
+    private void ConfirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+        user = UTF.getText();
+        seats = Integer.parseInt(PTF.getText());
+        NTF.setEnabled(true);
+        ATF.setEnabled(true);
+        MRB.setEnabled(true);
+        FRB.setEnabled(true);
+                
+    }//GEN-LAST:event_ConfirmBtnActionPerformed
+
+    private void EnterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnterBtnActionPerformed
+        // TODO add your handling code here:
+            //NTF.setText("");
+            //ATF.setText("0");
+            //MRB.setSelected(false);
+            //FRB.setSelected(false);
+            //if(++i<seats)
+            pname = NTF.getText();
+            age = Integer.parseInt(ATF.getText());
+            char gender =0;
+            if(MRB.isSelected())
+                gender='M';
+            if(FRB.isSelected())
+                gender='F';
+            try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/FLIGHT_BOOKING", "root", "1234");
+            String query = "INSERT INTO PASSENGER VALUES ('"+pname+"','"+age+"','"+user+"','"+gender+"');";
+            stmt = (Statement) con.createStatement();
+            stmt.execute(query);
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
+        
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/FLIGHT_BOOKING", "root", "1234");
+            String query = "UPDATE BOOKINGS,FLIGHTS,BOOKED_FLIGHTS SET BOOKED_SEATS= "+seats+",TOTAL_PRICE = (FLIGHTS.PRICE*"+seats+") WHERE BOOKED_FLIGHTS.DEFAULT_F_ID=FLIGHTS.DEFAULT_F_ID AND BOOKED_FLIGHTS.F_ID = BOOKINGS.F_ID;";
+            String query2 = "UPDATE FLIGHTS,BOOKED_FLIGHTS,BOOKINGS SET FLIGHTS.AVL_SEATS =FLIGHTS.AVL_SEATS-"+seats+" WHERE FLIGHTS.DEFAULT_F_ID = BOOKED_FLIGHTS.DEFAULT_F_ID AND BOOKED_FLIGHTS.F_ID = BOOKINGS.F_ID;";
+            stmt = (Statement) con.createStatement();
+            stmt.execute(query);
+            stmt.execute(query2);
+            con.close();
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
+        if(++i<seats)
+        {
+            NTF.setText("");
+            ATF.setText("0");
+            MRB.setSelected(false);
+            FRB.setSelected(false);
+        }
+        else
+        {    
+            new gg().setVisible(true);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_EnterBtnActionPerformed
+
+    private void NTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NTFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -123,8 +282,20 @@ public class Flist extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField ATF;
+    private javax.swing.JButton ConfirmBtn;
+    private javax.swing.JButton EnterBtn;
+    private javax.swing.JRadioButton FRB;
+    private javax.swing.JRadioButton MRB;
+    private javax.swing.JTextField NTF;
+    private javax.swing.JTextField PTF;
+    private javax.swing.JTextField UTF;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
 }
