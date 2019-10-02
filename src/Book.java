@@ -17,6 +17,8 @@ public class Book extends javax.swing.JFrame {
     Connection con=null;
     ResultSet rs=null;
     Statement stmt=null;
+    Date d = null;
+    
     
     /**
      * Creates new form NewJFrame
@@ -24,6 +26,7 @@ public class Book extends javax.swing.JFrame {
     public Book() {
         initComponents();
         proceedBtn.setEnabled(false);
+        //Date d = null;
     }
 
     /**
@@ -234,12 +237,12 @@ public class Book extends javax.swing.JFrame {
         // TODO add your handling code here:
         String src = (String) srcComboBox.getSelectedItem();
         String des = (String) desComboBox.getSelectedItem();
-        Date d = DateChooser.getDate();
+        d = DateChooser.getDate();
         date = Integer.toString(1900+d.getYear())+'-'+Integer.toString(d.getMonth()+1)+'-'+Integer.toString(d.getDate());
         
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/FLIGHT_BOOKING", "root", "1234");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/FLY", "root", "root123");
             String query = "SELECT * FROM FLIGHTS WHERE SOURCE='"+src+"' AND DESTINATION='"+des+"';";
             stmt = (Statement) con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -328,16 +331,19 @@ public String date;
             System.out.print(e);
         }
         int curr_FID=0,c=0;
+        String fkoff;
         try {
-            String query = "SELECT F.DEFAULT_F_ID,B.F_ID FROM FLIGHTS F,BOOKINGS B, BOOKED_FLIGHTS BF WHERE F.DEFAULT_F_ID=BF.DEFAULT_F_ID AND B.B_ID NOT LIKE '%0';";
+            String query = "SELECT F.DEFAULT_F_ID,B.F_ID,BF.FLIGHT_DATE FROM FLIGHTS F,BOOKINGS B, BOOKED_FLIGHTS BF WHERE F.DEFAULT_F_ID=BF.DEFAULT_F_ID AND B.B_ID NOT LIKE '%0';";
             stmt = (Statement)con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while(rs.next())
             {
-                if(rs.getString(1).equals(deff))
+                fkoff=rs.getDate(3).toString();
+                if(rs.getString(1).equals(deff) /*&& d==rs.getDate(3)*/)
                 {
                     c++;
                     last_FID=rs.getInt(2);
+                    curr_FID=last_FID;
                     break;
                 }
             }
@@ -354,11 +360,16 @@ public String date;
         str_curr_FID += Integer.toString(curr_FID);
         
         try {
+            String query2;
             String query = "INSERT INTO BOOKINGS VALUES ('"+str_curr_BID+"', '"+u_id+"', '"+str_curr_FID+"', NULL, NULL, NULL);";
-            String query2 = "INSERT INTO BOOKED_FLIGHTS VALUES('"+str_curr_FID+"','"+avls+"','"+deff+"','"+date+"');";
+            String query3 = "INSERT INTO CANCELLATION VALUES ('"+str_curr_BID+"', '"+str_curr_FID+"', '"+src+"', '"+dest+"', '"+date+"');";
             stmt = (Statement) con.createStatement();
+            if(c==0)
+            {   query2 = "INSERT INTO BOOKED_FLIGHTS VALUES('"+str_curr_FID+"','"+avls+"','"+deff+"','"+date+"');";
+                stmt.execute(query2);
+            }
             stmt.execute(query);
-            stmt.execute(query2);
+            stmt.execute(query3);
         } catch(Exception e) {
             System.out.print(e);
         }       
