@@ -1,3 +1,6 @@
+
+import java.sql.*;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,6 +13,10 @@
  */
 public class Cancel extends javax.swing.JFrame {
 
+    Connection con=null;
+    ResultSet rs=null;
+    Statement stmt=null;
+    String U_id;
     /**
      * Creates new form Cancel
      */
@@ -26,9 +33,25 @@ public class Cancel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDesktopPane1 = new javax.swing.JDesktopPane();
         bk = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         bookedFlightsTable = new javax.swing.JTable();
+        Cancel = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        username = new javax.swing.JTextField();
+        Confirm = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,6 +67,7 @@ public class Cancel extends javax.swing.JFrame {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
+                {null, null, null, null, null},
                 {null, null, null, null, null}
             },
             new String [] {
@@ -53,16 +77,14 @@ public class Cancel extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        });
+        bookedFlightsTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bookedFlightsTableMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(bookedFlightsTable);
@@ -74,27 +96,73 @@ public class Cancel extends javax.swing.JFrame {
             bookedFlightsTable.getColumnModel().getColumn(4).setResizable(false);
         }
 
+        Cancel.setText("Cancel");
+        Cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Confirm username: ");
+
+        username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameActionPerformed(evt);
+            }
+        });
+
+        Confirm.setText("Confirm");
+        Confirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConfirmActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bk)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(228, 228, 228)
+                        .addComponent(Cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(231, 231, 231)
+                        .addComponent(Confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(114, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(bk, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(68, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addComponent(Confirm)
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(Cancel)
+                .addGap(18, 18, 18)
                 .addComponent(bk)
-                .addContainerGap())
+                .addGap(28, 28, 28))
         );
 
         pack();
@@ -105,6 +173,95 @@ public class Cancel extends javax.swing.JFrame {
         new Home().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_bkActionPerformed
+public String src;
+public String dest;
+    private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
+        // TODO add your handling code here:
+        src = (String) bookedFlightsTable.getValueAt(selectedRow, 2);
+        dest = (String) bookedFlightsTable.getValueAt(selectedRow, 3);
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/FLIGHT_BOOKING", "root", "1234");
+            
+            String Bid = (String) bookedFlightsTable.getValueAt(selectedRow, 0);
+            String query = "DELETE FROM CANCEL WHERE B_ID= '"+Bid+"';";
+            String query1 = "DELETE FROM BOOKINGS WHERE B_ID= '"+Bid+"';";
+            String query2 = "SELECT * FROM CANCEL WHERE B_ID= '"+Bid+"';";
+            stmt = (Statement) con.createStatement();
+            stmt.execute(query);
+            stmt.execute(query1);
+            ResultSet rs = stmt.executeQuery(query2);
+            
+            int i=0;
+            while (rs.next()) {
+                bookedFlightsTable.setValueAt(rs.getString(1), i, 0);
+                bookedFlightsTable.setValueAt(rs.getString(2), i, 1);
+                bookedFlightsTable.setValueAt(rs.getString(3), i, 2);
+                bookedFlightsTable.setValueAt(rs.getString(4), i, 3);
+                bookedFlightsTable.setValueAt(rs.getDate(5), i, 4);
+                i++;
+            }
+            /*while(i<10) {
+                bookedFlightsTable.setValueAt("", i, 0);
+                bookedFlightsTable.setValueAt("", i, 1);
+                bookedFlightsTable.setValueAt("", i, 2);
+                bookedFlightsTable.setValueAt("", i, 3);
+                bookedFlightsTable.setValueAt("", i, 4);
+                //bookedFlightsTable.setValueAt("", i, 5);
+                //bookedFlightsTable.setValueAt("", i, 6);
+                //bookedFlightsTable.setValueAt("", i, 7);
+                i++;
+            }*/
+        }
+        catch(Exception e)
+        {
+            System.out.print(e);
+        }
+                        
+    }//GEN-LAST:event_CancelActionPerformed
+
+    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
+        // TODO add your handling code here:
+        U_id = username.getText();
+    }//GEN-LAST:event_usernameActionPerformed
+
+    private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmActionPerformed
+        // TODO add your handling code here:
+        //if(U_id.equals(Book.u_id)){
+        
+        try 
+        {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/FLIGHT_BOOKING", "root", "1234");
+            //String q1 = "INSERT INTO CANCEL (B_ID, F_ID, FLIGHT_DATE) SELECT B_ID, F_ID, FLIGHT_DATE FROM BOOKINGS WHERE U_ID='"+U_id+"';";
+            //String q2 = " UPDATE CANCEL,BOOKINGS SET SOURCE='"+src+"',DESTINATION='"+dest+"' WHERE CANCEL.F_ID=BOOKINGS.F_ID";
+            String q3 = "SELECT * FROM CANCEL;";
+            stmt = (Statement) con.createStatement();
+            //stmt.execute(q1);
+            //stmt.execute(q2);
+            ResultSet rs = stmt.executeQuery(q3);
+            
+            int i=0;
+            while (rs.next()) {
+                bookedFlightsTable.setValueAt(rs.getString(1), i, 0);
+                bookedFlightsTable.setValueAt(rs.getString(2), i, 1);
+                bookedFlightsTable.setValueAt(rs.getString(3), i, 2);
+                bookedFlightsTable.setValueAt(rs.getString(4), i, 3);
+                bookedFlightsTable.setValueAt(rs.getDate(5), i, 4);
+                i++;
+            }
+        }
+        catch(Exception e) 
+        {
+           System.out.print(e);
+        }
+        //}
+    }//GEN-LAST:event_ConfirmActionPerformed
+    int selectedRow = -1;
+    private void bookedFlightsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookedFlightsTableMouseClicked
+        // TODO add your handling code here:
+        selectedRow = bookedFlightsTable.getSelectedRow();
+    }//GEN-LAST:event_bookedFlightsTableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -142,8 +299,13 @@ public class Cancel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Cancel;
+    private javax.swing.JButton Confirm;
     private javax.swing.JButton bk;
     private javax.swing.JTable bookedFlightsTable;
+    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }
