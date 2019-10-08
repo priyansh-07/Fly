@@ -45,8 +45,13 @@ public class Flist extends javax.swing.JFrame {
         FRB = new javax.swing.JRadioButton();
         EnterBtn = new javax.swing.JButton();
         UTF = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(715, 320));
+        setPreferredSize(new java.awt.Dimension(715, 320));
+        setResizable(false);
+        getContentPane().setLayout(null);
 
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -54,12 +59,25 @@ public class Flist extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(10, 234, 80, 23);
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Enter Username:");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(10, 30, 190, 14);
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Number of Passengers: ");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(10, 70, 180, 14);
+        getContentPane().add(PTF);
+        PTF.setBounds(230, 70, 61, 20);
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Passenger Name: ");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(10, 156, 110, 14);
 
         ConfirmBtn.setText("Confirm");
         ConfirmBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -67,6 +85,8 @@ public class Flist extends javax.swing.JFrame {
                 ConfirmBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(ConfirmBtn);
+        ConfirmBtn.setBounds(440, 30, 100, 23);
 
         NTF.setEnabled(false);
         NTF.addActionListener(new java.awt.event.ActionListener() {
@@ -74,20 +94,43 @@ public class Flist extends javax.swing.JFrame {
                 NTFActionPerformed(evt);
             }
         });
+        getContentPane().add(NTF);
+        NTF.setBounds(140, 150, 157, 20);
 
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Age:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(310, 150, 30, 14);
 
         ATF.setEnabled(false);
+        ATF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ATFActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ATF);
+        ATF.setBounds(360, 150, 60, 20);
 
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Gender: ");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(450, 160, 80, 14);
 
         buttonGroup1.add(MRB);
+        MRB.setForeground(new java.awt.Color(255, 255, 255));
         MRB.setText("Male");
         MRB.setEnabled(false);
+        MRB.setOpaque(false);
+        getContentPane().add(MRB);
+        MRB.setBounds(540, 150, 90, 23);
 
         buttonGroup1.add(FRB);
+        FRB.setForeground(new java.awt.Color(255, 255, 255));
         FRB.setText("Female");
         FRB.setEnabled(false);
+        FRB.setOpaque(false);
+        getContentPane().add(FRB);
+        FRB.setBounds(540, 190, 100, 23);
 
         EnterBtn.setText("Enter");
         EnterBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -95,76 +138,16 @@ public class Flist extends javax.swing.JFrame {
                 EnterBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(EnterBtn);
+        EnterBtn.setBounds(570, 230, 80, 23);
+        getContentPane().add(UTF);
+        UTF.setBounds(230, 30, 156, 20);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(EnterBtn)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(PTF, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(UTF, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(ConfirmBtn))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(NTF, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(ATF, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(FRB)
-                            .addComponent(MRB))
-                        .addGap(52, 52, 52))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(ConfirmBtn)
-                    .addComponent(UTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(PTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(NTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(ATF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(MRB))
-                .addGap(18, 18, 18)
-                .addComponent(FRB)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(EnterBtn))
-                .addContainerGap())
-        );
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\VINAY\\Desktop\\ultimate.jpg")); // NOI18N
+        jLabel6.setText("jLabel6");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(0, 0, 750, 370);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -246,6 +229,10 @@ public class Flist extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_NTFActionPerformed
 
+    private void ATFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ATFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ATFActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -297,5 +284,6 @@ public class Flist extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 }

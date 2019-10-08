@@ -32,8 +32,12 @@ public class Home extends javax.swing.JFrame {
         Book = new javax.swing.JButton();
         Cancel = new javax.swing.JButton();
         Exit = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(400, 300));
+        setResizable(false);
+        getContentPane().setLayout(null);
 
         Book.setText("Book");
         Book.addActionListener(new java.awt.event.ActionListener() {
@@ -41,6 +45,8 @@ public class Home extends javax.swing.JFrame {
                 BookActionPerformed(evt);
             }
         });
+        getContentPane().add(Book);
+        Book.setBounds(70, 110, 90, 23);
 
         Cancel.setText("Cancel");
         Cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -48,6 +54,8 @@ public class Home extends javax.swing.JFrame {
                 CancelActionPerformed(evt);
             }
         });
+        getContentPane().add(Cancel);
+        Cancel.setBounds(230, 110, 100, 23);
 
         Exit.setText("Exit");
         Exit.addActionListener(new java.awt.event.ActionListener() {
@@ -55,34 +63,13 @@ public class Home extends javax.swing.JFrame {
                 ExitActionPerformed(evt);
             }
         });
+        getContentPane().add(Exit);
+        Exit.setBounds(160, 190, 80, 23);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addComponent(Book)
-                        .addGap(65, 65, 65)
-                        .addComponent(Cancel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(171, 171, 171)
-                        .addComponent(Exit)))
-                .addContainerGap(106, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(143, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Book)
-                    .addComponent(Cancel))
-                .addGap(57, 57, 57)
-                .addComponent(Exit)
-                .addGap(54, 54, 54))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\VINAY\\Desktop\\ultimate.jpg")); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 400, 300);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -144,5 +131,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton Book;
     private javax.swing.JButton Cancel;
     private javax.swing.JButton Exit;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
