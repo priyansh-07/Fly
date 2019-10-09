@@ -71,7 +71,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(User);
-        User.setBounds(310, 110, 132, 16);
+        User.setBounds(310, 110, 132, 20);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Username");
@@ -85,7 +85,7 @@ public class Login extends javax.swing.JFrame {
 
         Pass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(Pass);
-        Pass.setBounds(310, 170, 132, 16);
+        Pass.setBounds(310, 170, 132, 20);
 
         jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\VINAY\\Downloads\\cloud.jpeg")); // NOI18N
         getContentPane().add(jLabel3);
