@@ -178,7 +178,7 @@ public class Book extends javax.swing.JFrame {
             }
         });
         getContentPane().add(uid_tf);
-        uid_tf.setBounds(374, 399, 209, 20);
+        uid_tf.setBounds(374, 399, 209, 30);
 
         jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\VINAY\\Desktop\\ultimate.jpg")); // NOI18N
         jLabel5.setText("jLabel5");

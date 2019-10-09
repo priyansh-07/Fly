@@ -127,7 +127,7 @@ public class Cancel extends javax.swing.JFrame {
             }
         });
         getContentPane().add(username);
-        username.setBounds(240, 30, 163, 20);
+        username.setBounds(240, 30, 163, 30);
 
         Confirm.setText("Confirm");
         Confirm.addActionListener(new java.awt.event.ActionListener() {

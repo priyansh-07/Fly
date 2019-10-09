@@ -50,15 +50,15 @@ public class NewUser extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
         getContentPane().add(TF1);
-        TF1.setBounds(200, 60, 130, 20);
+        TF1.setBounds(200, 60, 130, 30);
         getContentPane().add(TF2);
-        TF2.setBounds(200, 120, 130, 20);
+        TF2.setBounds(200, 120, 130, 30);
         getContentPane().add(TF3);
-        TF3.setBounds(200, 180, 130, 20);
+        TF3.setBounds(200, 180, 130, 30);
         getContentPane().add(TF4);
-        TF4.setBounds(200, 240, 130, 20);
+        TF4.setBounds(200, 240, 130, 30);
         getContentPane().add(TF5);
-        TF5.setBounds(200, 300, 130, 20);
+        TF5.setBounds(200, 300, 130, 30);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -96,7 +96,7 @@ public class NewUser extends javax.swing.JFrame {
         getContentPane().add(jLabel6);
         jLabel6.setBounds(100, 360, 100, 17);
         getContentPane().add(PF1);
-        PF1.setBounds(200, 360, 130, 20);
+        PF1.setBounds(200, 360, 130, 30);
 
         acc.setText("Create Account");
         acc.addActionListener(new java.awt.event.ActionListener() {

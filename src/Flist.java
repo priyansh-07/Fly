@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 import java.sql.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author VINAY
@@ -72,7 +73,7 @@ public class Flist extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(10, 70, 180, 14);
         getContentPane().add(PTF);
-        PTF.setBounds(230, 70, 61, 20);
+        PTF.setBounds(230, 80, 61, 30);
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Passenger Name: ");
@@ -95,7 +96,7 @@ public class Flist extends javax.swing.JFrame {
             }
         });
         getContentPane().add(NTF);
-        NTF.setBounds(140, 150, 157, 20);
+        NTF.setBounds(140, 150, 157, 30);
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Age:");
@@ -109,7 +110,7 @@ public class Flist extends javax.swing.JFrame {
             }
         });
         getContentPane().add(ATF);
-        ATF.setBounds(360, 150, 60, 20);
+        ATF.setBounds(360, 150, 60, 40);
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Gender: ");
@@ -141,7 +142,7 @@ public class Flist extends javax.swing.JFrame {
         getContentPane().add(EnterBtn);
         EnterBtn.setBounds(570, 230, 80, 23);
         getContentPane().add(UTF);
-        UTF.setBounds(230, 30, 156, 20);
+        UTF.setBounds(230, 30, 156, 30);
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\VINAY\\Desktop\\ultimate.jpg")); // NOI18N
@@ -219,8 +220,9 @@ public class Flist extends javax.swing.JFrame {
             FRB.setSelected(false);
         }
         else
-        {    
-            new gg().setVisible(true);
+        {   
+            JOptionPane.showMessageDialog(null,"Booking successful!");
+            new Home().setVisible(true);
             this.setVisible(false);
         }
     }//GEN-LAST:event_EnterBtnActionPerformed
